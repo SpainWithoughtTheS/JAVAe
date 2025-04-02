@@ -1,0 +1,6 @@
+org\yourcompany\javamonkey\Portfolio.class
+org\yourcompany\javamonkey\PortfolioGenerator.class
+org\yourcompany\javamonkey\PortfolioDisplay.class
+org\yourcompany\javamonkey\Stock.class
+org\yourcompany\javamonkey\UserProfile.class
+org\yourcompany\javamonkey\InvestmentApp.class
