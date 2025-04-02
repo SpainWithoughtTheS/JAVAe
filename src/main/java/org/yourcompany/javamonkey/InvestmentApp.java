@@ -1,13 +1,13 @@
 package org.yourcompany.javamonkey;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import java.util.*;
-
+import javafx.util.Duration;
 
 public class InvestmentApp extends Application {
 
@@ -15,48 +15,48 @@ public class InvestmentApp extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Personalized Investment Portfolio");
 
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(8);
-        grid.setHgap(10);
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20));
+        layout.setStyle("-fx-background-color: #F4F4F4; -fx-border-radius: 10; -fx-background-radius: 10;");
 
         // UI Components
-        Label maritalStatusLabel = new Label("Marital Status:");
+        Label title = new Label("Investment Portfolio Setup");
+        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+
         ComboBox<String> maritalStatusComboBox = new ComboBox<>();
         maritalStatusComboBox.getItems().addAll("Single", "Married", "Divorced", "Widowed");
-        GridPane.setConstraints(maritalStatusLabel, 0, 0);
-        GridPane.setConstraints(maritalStatusComboBox, 1, 0);
+        maritalStatusComboBox.setPromptText("Select Marital Status");
 
-        Label dependentsLabel = new Label("Number of Dependents:");
         TextField dependentsTextField = new TextField();
-        GridPane.setConstraints(dependentsLabel, 0, 1);
-        GridPane.setConstraints(dependentsTextField, 1, 1);
+        dependentsTextField.setPromptText("Number of Dependents");
 
-        Label retirementAgeLabel = new Label("Retirement Age:");
         TextField retirementAgeTextField = new TextField();
-        GridPane.setConstraints(retirementAgeLabel, 0, 2);
-        GridPane.setConstraints(retirementAgeTextField, 1, 2);
+        retirementAgeTextField.setPromptText("Retirement Age");
 
-        Label riskToleranceLabel = new Label("Risk Tolerance (1-10):");
         Slider riskToleranceSlider = new Slider(1, 10, 5);
         riskToleranceSlider.setShowTickLabels(true);
         riskToleranceSlider.setShowTickMarks(true);
-        GridPane.setConstraints(riskToleranceLabel, 0, 3);
-        GridPane.setConstraints(riskToleranceSlider, 1, 3);
+        riskToleranceSlider.setMajorTickUnit(1);
+        riskToleranceSlider.setMinorTickCount(0);
 
-        Label debtLabel = new Label("Has Debt:");
-        CheckBox debtCheckBox = new CheckBox();
-        GridPane.setConstraints(debtLabel, 0, 4);
-        GridPane.setConstraints(debtCheckBox, 1, 4);
-
-        Label preferredSectorsLabel = new Label("Preferred Sectors:");
+        CheckBox debtCheckBox = new CheckBox("Has Debt?");
+        
         ComboBox<String> preferredSectorsComboBox = new ComboBox<>();
         preferredSectorsComboBox.getItems().addAll("Tech", "Healthcare", "Consumer Discretionary", "Utilities", "Materials");
-        GridPane.setConstraints(preferredSectorsLabel, 0, 5);
-        GridPane.setConstraints(preferredSectorsComboBox, 1, 5);
+        preferredSectorsComboBox.setPromptText("Preferred Sector");
 
         Button generatePortfolioButton = new Button("Generate Portfolio");
-        GridPane.setConstraints(generatePortfolioButton, 1, 6);
+        generatePortfolioButton.setStyle("-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-size: 14px;");
+        
+        // Button Hover Effect
+        generatePortfolioButton.setOnMouseEntered(e -> generatePortfolioButton.setStyle("-fx-background-color: #005A9E; -fx-text-fill: white;"));
+        generatePortfolioButton.setOnMouseExited(e -> generatePortfolioButton.setStyle("-fx-background-color: #0078D7; -fx-text-fill: white;"));
+
+        // Fade-in Animation
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(800), layout);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.play();
 
         // Event Handling
         generatePortfolioButton.setOnAction(e -> {
@@ -65,18 +65,17 @@ public class InvestmentApp extends Application {
             int retirementAge = Integer.parseInt(retirementAgeTextField.getText());
             int riskTolerance = (int) riskToleranceSlider.getValue();
             boolean hasDebt = debtCheckBox.isSelected();
-            List<String> preferredSectors = Collections.singletonList(preferredSectorsComboBox.getValue());
+            String preferredSector = preferredSectorsComboBox.getValue();
 
-            UserProfile userProfile = new UserProfile(maritalStatus, dependents, retirementAge, riskTolerance, hasDebt, preferredSectors);
+            UserProfile userProfile = new UserProfile(maritalStatus, dependents, retirementAge, riskTolerance, hasDebt, preferredSector);
             Portfolio portfolio = PortfolioGenerator.generatePortfolio(userProfile);
             PortfolioDisplay.displayPortfolio(portfolio);
         });
 
-        grid.getChildren().addAll(maritalStatusLabel, maritalStatusComboBox, dependentsLabel, dependentsTextField,
-                retirementAgeLabel, retirementAgeTextField, riskToleranceLabel, riskToleranceSlider, debtLabel, debtCheckBox,
-                preferredSectorsLabel, preferredSectorsComboBox, generatePortfolioButton);
+        layout.getChildren().addAll(title, maritalStatusComboBox, dependentsTextField, retirementAgeTextField,
+                riskToleranceSlider, debtCheckBox, preferredSectorsComboBox, generatePortfolioButton);
 
-        Scene scene = new Scene(grid, 600, 400);
+        Scene scene = new Scene(layout, 400, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
