@@ -19,11 +19,25 @@ public class Stock {
         return name;
     }
 
+    public String getTicker() {
+        return ticker;
+    }
+
     public double getPeRatio() {
         return peRatio;
     }
 
+    public double getDividendYield() {
+        return dividendYield;
+    }
+
     public double getGrowthRate() {
         return growthRate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Stock{name='%s', ticker='%s', P/E=%.2f, Yield=%.2f%%, Growth=%.2f%%}",
+                name, ticker, peRatio, dividendYield, growthRate);
     }
 }
