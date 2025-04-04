@@ -45,7 +45,7 @@ Welcome to the Insurance Portfolio project! This is an application designed to g
 ### Setting Up
 1. Navigate to the project directory:
    ```bash
-   cd insurance-portfolio
+   cd 'your library'
    ```
 
 2. Install required dependencies using Maven:
@@ -73,7 +73,7 @@ Welcome to the Insurance Portfolio project! This is an application designed to g
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/insurance-portfolio.git
+   git clone https://github.com/SpainWithoughtTheS/JAVAe.git
    ```
 
 2. **Navigate to the project folder**:
