@@ -1,7 +1,3 @@
-Sure! Here's a **README** template for your **Insurance Portfolio** project on GitHub. It includes steps for setting up the project, running it, and common error fixes.
-
----
-
 # Insurance Portfolio - Personalized Investment and Insurance App
 
 Welcome to the Insurance Portfolio project! This is an application designed to generate personalized investment portfolios and insurance plans based on user financial data, risk tolerance, and goals.
@@ -39,7 +35,7 @@ Welcome to the Insurance Portfolio project! This is an application designed to g
 4. **Clone the Repository**: 
    To get started, clone this repository to your local machine using the following command:
    ```bash
-   git clone https://github.com/your-username/insurance-portfolio.git
+  [ git clone https://github.com/your-username/insurance-portfolio.git](https://github.com/SpainWithoughtTheS/JAVAe.git)
    ```
 
 ### Setting Up
