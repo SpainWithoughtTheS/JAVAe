@@ -35,7 +35,7 @@ Welcome to the Insurance Portfolio project! This is an application designed to g
 4. **Clone the Repository**: 
    To get started, clone this repository to your local machine using the following command:
    ```bash
-  [ git clone https://github.com/your-username/insurance-portfolio.git](https://github.com/SpainWithoughtTheS/JAVAe.git)
+   git clone https://github.com/your-username/insurance-portfolio.git https://github.com/SpainWithoughtTheS/JAVAe.git
    ```
 
 ### Setting Up
